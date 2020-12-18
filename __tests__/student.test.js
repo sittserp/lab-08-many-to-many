@@ -36,7 +36,7 @@ describe('student routes', () => {
 
     const student = await Student.insert({
       name: 'Matt',
-      courses: ['MATH', 'ENGLISH', 'HISTORY']
+      courses: ['MATH', 'ENGLISH']
     });
 
     const response = await request(app)
@@ -44,8 +44,9 @@ describe('student routes', () => {
     
     expect(response.body).toEqual({
       ...student,
-      courses: ['MATH', 'ENGLISH', 'HISTORY']
+      courses: ['MATH', 'ENGLISH']
     });
+
   });
 
   it('finds all students via GET', async() => {
