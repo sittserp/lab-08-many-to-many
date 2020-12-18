@@ -22,12 +22,12 @@ describe('course routes', () => {
       });
 
     expect(response.body).toEqual({
-      id: '1',
+      courseId: '1',
       title: 'MATH'
     });
   });
 
-  it.only('finds a course by id via GET and all associated students', async() => {
+  it('finds a course by id via GET and all associated students', async() => {
     await Promise.all([
       { name: 'Matt' },
       { name: 'Jay' },
@@ -40,7 +40,7 @@ describe('course routes', () => {
     });
 
     const response = await request(app)
-      .get(`/api/v1/courses/${course.id}`);
+      .get(`/api/v1/courses/${course.courseId}`);
     
     expect(response.body).toEqual({
       ...course,
@@ -68,13 +68,13 @@ describe('course routes', () => {
     });
 
     const response = await request(app)
-      .put(`/api/v1/courses/${course.id}`)
+      .put(`/api/v1/courses/${course.courseId}`)
       .send({
         title: 'ENGLISH'
       });
 
     expect(response.body).toEqual({
-      id: course.id,
+      courseId: course.courseId,
       title: 'ENGLISH'
     });
   });
@@ -85,7 +85,7 @@ describe('course routes', () => {
     });
 
     const response = await request(app)
-      .delete(`/api/v1/courses/${course.id}`);
+      .delete(`/api/v1/courses/${course.courseId}`);
 
     expect(response.body).toEqual(course);
   });

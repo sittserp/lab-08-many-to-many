@@ -12,7 +12,7 @@ CREATE TABLE students (
   name VARCHAR(32)
 );
 
-CREATE TABLE tweets_tags (
+CREATE TABLE courses_students (
   course_id BIGINT REFERENCES courses(course_id),
   student_id BIGINT REFERENCES students(student_id),
   PRIMARY KEY(course_id, student_id)
